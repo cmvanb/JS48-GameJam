@@ -32,18 +32,26 @@ define([
     {
         console.log('create');
 
+        game.physics.startSystem(Phaser.Physics.P2JS);
+
         game.stage.backgroundColor = '#000000';
 
-        var map = game.add.tilemap('test1');
+        createLevel();
+    }
 
-        for (var i = 0; i < Loader.TILE_FILE_NAMES.length; ++i)
-        {
-            map.addTilesetImage(Loader.TILE_FILE_NAMES[i]);
-        }
+    function createLevel()
+    {
+        var map = game.add.tilemap('map');
 
-        var layer = map.createLayer('Walls');
+        map.addTilesetImage('gradiented');
 
-        layer.resizeWorld();
+        var backgroundLayer = map.createLayer('Background');
+
+        backgroundLayer.resizeWorld();
+
+        var wallsLayer = map.createLayer('Walls');
+
+        wallsLayer.resizeWorld();
     }
 
     function update()
