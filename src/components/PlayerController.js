@@ -42,7 +42,12 @@ define([
     {
         Component.prototype.update.call(this);
 
-        if (this.cursors.left.isDown)
+        if (scientist.controlsDisabled)
+        {
+            return;
+        }
+
+        if (this.cursors.up.isDown)
         {
             this.body.moveLeft(PlayerController.WALK_SPEED);
         }

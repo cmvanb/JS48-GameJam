@@ -19,7 +19,7 @@ define([], function() {
 
     GameObject.prototype.addComponent = function(component)
     {
-        var name = component.prototype.constructor.toString();
+        var name = component.constructor.name;
 
         this[name] = new component(this.sprite);
 
