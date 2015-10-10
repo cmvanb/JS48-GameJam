@@ -24,15 +24,15 @@ define([
             }
         };
 
-        var style = { font: "20px Arial", fill: "#FFFFFF", wordWrap: true, wordWrapWidth: this.sprite.width, align: "center" };
+        var style = { font: "18px Arial", fill: "#FFFFFF", wordWrap: true, wordWrapWidth: 500, align: "left" };
 
         this.text = game.add.text(0, 0, 'temp text', style);
         this.text.visible = false;
 
-        var continueStyle = { font: "12px Arial", fill: "#FFFFFF", wordWrap: true, wordWrapWidth: this.sprite.width, align: "center" };
+        /*var continueStyle = { font: "18px Arial", fill: "#FFFFFF", wordWrap: true, wordWrapWidth: this.sprite.width, align: "center" };
 
-        this.continueText = game.add.text(0, 0, 'Press "Space" to continue...', continueStyle);
-        this.continueText.visible = false;
+        this.continueText = game.add.text(0, 0, '[Spacebar] to continue...', continueStyle);
+        this.continueText.visible = false;*/
 
         this.states = {
             idle: 0,
@@ -85,7 +85,7 @@ define([
         this.state = this.states.hiding;
 
         this.text.visible = false;
-        this.continueText.visible = false;
+        //this.continueText.visible = false;
 
         this.controlsDisabled = false;
     };
@@ -95,7 +95,7 @@ define([
         this.state = this.states.talking;
 
         this.text.visible = true;
-        this.continueText.visible = true;
+        //this.continueText.visible = true;
 
         this.nextSentence();
     };
@@ -156,11 +156,14 @@ define([
                 break;
         }
 
-        this.text.x = this.sprite.x - this.sprite.width / 2;
-        this.text.y = this.sprite.y - this.sprite.width / 2;
+        //this.text.x = this.sprite.x - this.sprite.width / 2;
+        //this.text.y = this.sprite.y - this.sprite.width / 2;
 
-        this.continueText.x = this.text.x;
-        this.continueText.y = this.text.y + 150;
+        this.text.x = 65;
+        this.text.y = 450;
+
+        /*this.continueText.x = this.text.x;
+        this.continueText.y = this.text.y + 50;*/
     };
 
     return SpeechPopup;

@@ -54,7 +54,7 @@ define([
         setTimeout(function()
         {
             scientist.show('tut', 0, true);
-        }, 1000);
+        }, 600);
     }
 
     function update()
