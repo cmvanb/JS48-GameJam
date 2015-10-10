@@ -59,10 +59,7 @@ define([
 
     Level.prototype.createWalls = function()
     {
-        /*var worldMaterial = game.physics.p2.createMaterial('worldMaterial');
-
-        //  4 trues = the 4 faces of the world in left, right, top, bottom order
-        game.physics.p2.setWorldMaterial(worldMaterial, true, true, true, true);*/
+        this.wallMaterial = game.physics.p2.createMaterial('wallMaterial');
 
         //  Set the tiles for collision.
         //  Do this BEFORE generating the p2 bodies.
@@ -76,7 +73,11 @@ define([
 
         for (var w = 0; w < this.walls.length; ++w)
         {
-            this.walls[w].debug = Constants.DEBUG;
+            var wall = this.walls[w];
+
+            wall.setMaterial(this.wallMaterial);
+
+            wall.debug = Constants.DEBUG;
         }
     };
 
@@ -100,6 +101,34 @@ define([
     Level.prototype.createPlayer = function()
     {
         this.player = new GameObject('player', [PlayerController]);
+
+        //  Here is the contact material. It's a combination of 2 materials, so whenever shapes with
+        //  those 2 materials collide it uses the following settings.
+        //  A single material can be used by as many different sprites as you like.
+        var playerWallContact = game.physics.p2.createContactMaterial(
+            this.player.material, this.wallMaterial);
+
+        // Friction to use in the contact of these two materials.
+        playerWallContact.friction = 0;
+
+        // Restitution (i.e. how bouncy it is!) to use in the contact of these two materials.
+        playerWallContact.restitution = 0;
+
+        // Stiffness of the resulting ContactEquation that this ContactMaterial generate.
+        playerWallContact.stiffness = 1e10;
+
+        // Relaxation of the resulting ContactEquation that this ContactMaterial generate.
+        playerWallContact.relaxation = 1e10;
+
+        // Stiffness of the resulting FrictionEquation that this ContactMaterial generate.
+        playerWallContact.frictionStiffness = 1e10;
+
+        // Relaxation of the resulting FrictionEquation that this ContactMaterial generate.
+        playerWallContact.frictionRelaxation = 1e10;
+
+        // Will add surface velocity to this material. If bodyA rests on top if bodyB, and the
+        // surface velocity is positive, bodyA will slide to the right.
+        playerWallContact.surfaceVelocity = 0;
     };
 
     Level.prototype.update = function()

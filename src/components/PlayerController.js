@@ -15,6 +15,8 @@ define([
 
         this.body = this.parent.body;
 
+        this.material = game.physics.p2.createMaterial('playerMaterial', this.body);
+
         this.body.clearShapes();
         this.body.addCapsule(length, 25, 0, 0, Math.PI / 2);
 
