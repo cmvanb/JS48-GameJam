@@ -1,5 +1,5 @@
 define([
-    'GlobalFunctions'
+    '../GlobalFunctions'
 ], function(GlobalFunctions)
 {
     function CloningMachine(sprite)
@@ -20,12 +20,7 @@ define([
 
     CloningMachine.prototype.update = function()
     {
-        var myPos = GlobalFunctions.getSpriteAnchorPosition(this.sprite);
-        var playerPos = GlobalFunctions.getSpriteAnchorPosition(player.sprite);
-
-        var distance = Phaser.Point.distance(myPos, playerPos);
-
-        if (distance < CloningMachine.ACTIVE_DISTANCE)
+        if (GlobalFunctions.distanceToPlayer(this.sprite) < CloningMachine.ACTIVE_DISTANCE)
         {
             this.setActive();
         }

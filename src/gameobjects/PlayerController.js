@@ -1,6 +1,6 @@
 define([
-    'Constants',
-    'components/CloningMachine'
+    '../Constants',
+    'gameobjects/CloningMachine'
 ], function(Constants, CloningMachine)
 {
     function PlayerController()

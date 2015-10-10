@@ -11,12 +11,7 @@ define([
 
     Spikes.prototype.update = function()
     {
-        var myPos = GlobalFunctions.getSpriteAnchorPosition(this.sprite);
-        var playerPos = GlobalFunctions.getSpriteAnchorPosition(player.sprite);
-
-        var distance = Phaser.Point.distance(myPos, playerPos);
-
-        if (distance < Spikes.DISTANCE)
+        if (GlobalFunctions.distanceToPlayer(this.sprite) < Spikes.DISTANCE)
         {
             player.kill();
         }

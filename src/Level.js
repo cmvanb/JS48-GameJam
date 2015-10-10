@@ -1,11 +1,12 @@
 'use strict';
 
 define([
-    'components/PlayerController',
     'Constants',
-    'components/CloningMachine',
-    'gameobjects/Spikes'
-], function (PlayerController, Constants, CloningMachine, Spikes)
+    'gameobjects/PlayerController',
+    'gameobjects/CloningMachine',
+    'gameobjects/Spikes',
+    'gameobjects/Weight'
+], function (Constants, PlayerController, CloningMachine, Spikes, Weight)
 {
     // Create a game object.
     var Level = function(fileName)
@@ -87,28 +88,22 @@ define([
 
     Level.prototype.createSpecialObjects = function()
     {
-        // Cloning machines.
-        var cloningMachinesGroup = game.add.group();
+        this.createUpdatableObjects(51, 'cloning-machine', CloningMachine);
+        this.createUpdatableObjects(52, 'spikes', Spikes);
+        this.createUpdatableObjects(53, 'weight', Weight);
+    };
 
-        this.map.createFromObjects('Objects', 51, 'cloning-machine', 0, true, false, cloningMachinesGroup);
+    Level.prototype.createUpdatableObjects = function(tiledId, name, ctor)
+    {
+        var group = game.add.group();
 
-        for (var i = 0; i < cloningMachinesGroup.children.length; ++i)
+        this.map.createFromObjects('Objects', tiledId, name, 0, true, false, group);
+
+        for (var i = 0; i < group.children.length; ++i)
         {
-            var cloningMachine = new CloningMachine(cloningMachinesGroup.children[i]);
+            var updatableObject = new ctor(group.children[i]);
 
-            this.updatables.push(cloningMachine);
-        }
-
-        // Spikes.
-        var spikesGroup = game.add.group();
-
-        this.map.createFromObjects('Objects', 52, 'spikes', 0, true, false, spikesGroup);
-
-        for (var j = 0; j < spikesGroup.children.length; ++j)
-        {
-            var spikes = new Spikes(spikesGroup.children[j]);
-
-            this.updatables.push(spikes);
+            this.updatables.push(updatableObject);
         }
     };
 
@@ -139,26 +134,12 @@ define([
         var playerWallContact = game.physics.p2.createContactMaterial(
             this.player.material, this.wallMaterial);
 
-        // Friction to use in the contact of these two materials.
         playerWallContact.friction = 0;
-
-        // Restitution (i.e. how bouncy it is!) to use in the contact of these two materials.
         playerWallContact.restitution = 0;
-
-        // Stiffness of the resulting ContactEquation that this ContactMaterial generate.
         playerWallContact.stiffness = 1e10;
-
-        // Relaxation of the resulting ContactEquation that this ContactMaterial generate.
         playerWallContact.relaxation = 1e10;
-
-        // Stiffness of the resulting FrictionEquation that this ContactMaterial generate.
         playerWallContact.frictionStiffness = 1e10;
-
-        // Relaxation of the resulting FrictionEquation that this ContactMaterial generate.
         playerWallContact.frictionRelaxation = 1e10;
-
-        // Will add surface velocity to this material. If bodyA rests on top if bodyB, and the
-        // surface velocity is positive, bodyA will slide to the right.
         playerWallContact.surfaceVelocity = 0;
     };
 

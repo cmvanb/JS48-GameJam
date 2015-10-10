@@ -50,10 +50,10 @@ define([
         // #care...
         window.scientist = scientist;
 
-        /*setTimeout(function()
+        setTimeout(function()
         {
-            scientist.show('tut', 0, true);
-        }, 600);*/
+            //scientist.show('tut', 0, true);
+        }, 600);
     }
 
     function update()

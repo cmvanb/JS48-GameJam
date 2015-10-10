@@ -14,14 +14,12 @@ define([], function ()
         return position;
     };
 
-    GlobalFunctions.getSpritePosition = function(sprite)
+    GlobalFunctions.distanceToPlayer = function(from)
     {
-        var position = new Phaser.Point();
+        var fromPos = GlobalFunctions.getSpriteAnchorPosition(from);
+        var playerPos = GlobalFunctions.getSpriteAnchorPosition(player.sprite);
 
-        position.x = sprite.x;
-        position.y = sprite.y;
-
-        return position;
+        return Phaser.Point.distance(fromPos, playerPos);
     };
 
     return GlobalFunctions;
