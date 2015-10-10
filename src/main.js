@@ -20,6 +20,8 @@ define([
     // Assign global, because game jam.
     window.game = game;
 
+    var level;
+
     function preload()
     {
         console.log('preload');
@@ -37,13 +39,14 @@ define([
 
         game.stage.backgroundColor = '#000000';
 
-        var level = new Level('level1');
+        level = new Level('level1');
 
         level.create();
     }
 
     function update()
     {
+        level.update();
     }
 
     function render()
