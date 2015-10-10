@@ -52,7 +52,7 @@ define([
             return;
         }
 
-        if (this.cursors.up.isDown)
+        if (this.cursors.left.isDown)
         {
             this.body.moveLeft(PlayerController.WALK_SPEED);
         }
