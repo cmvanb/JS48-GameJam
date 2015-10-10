@@ -16,19 +16,20 @@ define([
         this.dropped = false;
     }
 
-    Weight.DISTANCE = 240;
+    Weight.DISTANCE = 40;
 
     Weight.prototype.update = function()
     {
         if (!this.dropped
             && GlobalFunctions.distanceToPlayer(this.sprite) < Weight.DISTANCE)
         {
-            this.drop();
+            this.trigger();
+
             this.dropped = true;
         }
     };
 
-    Weight.prototype.drop = function()
+    Weight.prototype.trigger = function()
     {
         game.physics.p2.enable(this.sprite, Constants.DEBUG);
 

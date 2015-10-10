@@ -5,8 +5,9 @@ define([
     'gameobjects/PlayerController',
     'gameobjects/CloningMachine',
     'gameobjects/Spikes',
-    'gameobjects/Weight'
-], function (Constants, PlayerController, CloningMachine, Spikes, Weight)
+    'gameobjects/Weight',
+    'gameobjects/TriggerZone'
+], function (Constants, PlayerController, CloningMachine, Spikes, Weight, TriggerZone)
 {
     // Create a game object.
     var Level = function(fileName)
@@ -42,6 +43,10 @@ define([
         this.wallsLayer = this.map.createLayer('Walls');
 
         this.wallsLayer.resizeWorld();
+
+        this.fluffLayer = this.map.createLayer('Background Fluff');
+
+        this.fluffLayer.resizeWorld();
 
         // Physics setup.
         //game.physics.p2.friction = 0;
@@ -91,6 +96,26 @@ define([
         this.createUpdatableObjects(51, 'cloning-machine', CloningMachine);
         this.createUpdatableObjects(52, 'spikes', Spikes);
         this.createUpdatableObjects(53, 'weight', Weight);
+
+        // Trigger zones.
+        var objectsArray = this.map.objects.Objects;
+
+        for (var x = 0; x < objectsArray.length; ++x)
+        {
+            var obj = objectsArray[x];
+
+            var splits = obj.name.split('_');
+
+            if (splits.length > 1
+                && splits[0] === 'Trigger')
+            {
+                var rectangle = new Phaser.Rectangle(obj.x, obj.y, obj.width, obj.height);
+
+                var trigger = new TriggerZone(rectangle, splits[1], this);
+
+                this.updatables.push(trigger);
+            }
+        }
     };
 
     Level.prototype.createUpdatableObjects = function(tiledId, name, ctor)
@@ -102,6 +127,8 @@ define([
         for (var i = 0; i < group.children.length; ++i)
         {
             var updatableObject = new ctor(group.children[i]);
+
+            updatableObject.name = group.children[i].name;
 
             this.updatables.push(updatableObject);
         }
@@ -150,6 +177,18 @@ define([
         for (var i = 0; i < this.updatables.length; ++i)
         {
             this.updatables[i].update();
+        }
+    };
+
+    Level.prototype.performTrigger = function(triggerName)
+    {
+        for (var i = 0; i < this.updatables.length; ++i)
+        {
+            if (this.updatables[i].name === triggerName
+                && this.updatables[i].trigger)
+            {
+                this.updatables[i].trigger();
+            }
         }
     };
 

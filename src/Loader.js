@@ -19,7 +19,7 @@ define([], function ()
         game.load.image('scientist', 'assets/characters/dr-monocle-dialog.png');
         game.load.image('cloning-machine', 'assets/objects/cloning-machine.png');
         game.load.image('cloning-machine-active', 'assets/objects/cloning-machine-active.png');
-        game.load.image('spikes', 'assets/interactive/spikes.png');
+        game.load.image('spikes', 'assets/objects/spikes.png');
         game.load.image('weight', 'assets/objects/weight.png');
     };
 
