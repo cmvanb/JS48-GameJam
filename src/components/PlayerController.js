@@ -7,6 +7,8 @@ define([
         Component.call(this, parent);
 
         this.cursors = game.input.keyboard.createCursorKeys();
+
+        game.camera.follow(this.parent);
     }
 
     PlayerController.prototype = Object.create(Component.prototype);
