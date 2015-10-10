@@ -39,8 +39,8 @@ define([
         //  required. There is also a parameter to control optimising the map build.
         game.physics.p2.convertTilemap(map, wallsLayer);
 
-        game.physics.p2.restitution = 0.5;
-        game.physics.p2.gravity.y = 300;
+        game.physics.p2.restitution = 0.0;
+        game.physics.p2.gravity.y = 600;
 
         // Physics objects.
         var physicsObjects = game.add.group();
@@ -61,8 +61,6 @@ define([
     Level.prototype.createPlayer = function()
     {
         this.player = new GameObject('player', [PlayerController]);
-        this.player.sprite.x = 144;
-        this.player.sprite.y = 184;
     };
 
     Level.prototype.update = function()
