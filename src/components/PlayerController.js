@@ -16,13 +16,12 @@ define([
         this.body = this.parent.body;
 
         this.body.clearShapes();
-        //this.body.setCircle(35, 0, 10);
-        //this.body.setRectangleFromSprite(this.parent.sprite);
         this.body.addCapsule(length, 25, 0, 0, Math.PI / 2);
 
         this.body.fixedRotation = true;
         this.body.damping = 0.5;
 
+        // Start position.
         this.body.x = 200;
         this.body.y = 200;
 
@@ -56,7 +55,15 @@ define([
         }
         else
         {
-            this.body.velocity.x = 0;
+            if (Math.abs(this.body.velocity.x) > 0)
+            {
+                this.body.velocity.x = this.body.velocity.x * 0.75;
+
+                if (Math.abs(this.body.velocity.x) < 0.1)
+                {
+                    this.body.velocity.x = 0;
+                }
+            }
         }
 
         if (this.cursors.up.isDown
@@ -93,9 +100,7 @@ define([
                     d *= -1;
                 }
 
-                console.log(d);
-
-                if (d > 0.9)
+                if (d > 0.5)
                 {
                     return true;
                 }

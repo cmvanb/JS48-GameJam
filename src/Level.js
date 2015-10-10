@@ -13,51 +13,78 @@ define([
 
         this.fileName = fileName;
 
+        this.map = null;
+
         this.walls = null;
+
+        this.backgroundLayer = null;
+
+        this.wallsLayer = null;
     };
 
     Level.GRAVITY = 2000;
 
     Level.prototype.create = function()
     {
-        var map = game.add.tilemap(this.fileName);
+        // Create tilemap and add images.
+        this.map = game.add.tilemap(this.fileName);
 
-        map.addTilesetImage('gradiented');
-        map.addTilesetImage('objects');
+        this.map.addTilesetImage('gradiented');
+        this.map.addTilesetImage('objects');
 
-        // Add tile layers.
-        var backgroundLayer = map.createLayer('Background');
+        // Create tile layers.
+        this.backgroundLayer = this.map.createLayer('Background');
 
-        backgroundLayer.resizeWorld();
+        this.backgroundLayer.resizeWorld();
 
-        var wallsLayer = map.createLayer('Walls');
+        this.wallsLayer = this.map.createLayer('Walls');
 
-        wallsLayer.resizeWorld();
+        this.wallsLayer.resizeWorld();
 
-        //  Set the tiles for collision.
-        //  Do this BEFORE generating the p2 bodies below.
-        //map.setCollision(1);
-        map.setCollisionBetween(1, 14, true, wallsLayer);
-
-        //  Convert the tilemap layer into bodies. Only tiles that collide (see above) are created.
-        //  This call returns an array of body objects which you can perform addition actions on if
-        //  required. There is also a parameter to control optimising the map build.
-        this.walls = game.physics.p2.convertTilemap(map, wallsLayer, true, true);
-
-        for (var w = 0; w < this.walls.length; ++w)
-        {
-            this.walls[w].debug = Constants.DEBUG;
-        }
-
+        // Physics setup.
         //game.physics.p2.friction = 0;
         game.physics.p2.restitution = 0;
         game.physics.p2.gravity.y = Level.GRAVITY;
         game.physics.p2.world.setGlobalStiffness(1e5);
 
+        // Wall objects.
+        this.createWalls();
+
         // Physics objects.
+        this.createPhysicsObjects();
+
+        // Create player.
+        this.createPlayer();
+    };
+
+    Level.prototype.createWalls = function()
+    {
+        /*var worldMaterial = game.physics.p2.createMaterial('worldMaterial');
+
+        //  4 trues = the 4 faces of the world in left, right, top, bottom order
+        game.physics.p2.setWorldMaterial(worldMaterial, true, true, true, true);*/
+
+        //  Set the tiles for collision.
+        //  Do this BEFORE generating the p2 bodies.
+        this.map.setCollision(1, true, this.wallsLayer);
+        this.map.setCollisionBetween(3, 14, true, this.wallsLayer);
+
+        //  Convert the tilemap layer into bodies. Only tiles that collide (see above) are created.
+        //  This call returns an array of body objects which you can perform addition actions on if
+        //  required. There is also a parameter to control optimising the map build.
+        this.walls = game.physics.p2.convertTilemap(this.map, this.wallsLayer, true, true);
+
+        for (var w = 0; w < this.walls.length; ++w)
+        {
+            this.walls[w].debug = Constants.DEBUG;
+        }
+    };
+
+    Level.prototype.createPhysicsObjects = function()
+    {
         var physicsObjects = game.add.group();
 
-        map.createFromObjects('Objects', 50, 'box', 0, true, false, physicsObjects);
+        this.map.createFromObjects('Objects', 50, 'box', 0, true, false, physicsObjects);
 
         for (var i = 0; i < physicsObjects.children.length; ++i)
         {
@@ -68,9 +95,6 @@ define([
             physicsObject.body.mass = 6;
             physicsObject.body.damping = 0.5;
         }
-
-        // Create player.
-        this.createPlayer();
     };
 
     Level.prototype.createPlayer = function()
