@@ -3,9 +3,8 @@
 define([
     'Loader',
     'Level',
-    'gameobjects/GameObject',
     'gameobjects/SpeechPopup'
-], function (Loader, Level, GameObject, SpeechPopup)
+], function (Loader, Level, SpeechPopup)
 {
     // Greet the world.
     console.log('Hello world.');
@@ -46,15 +45,15 @@ define([
 
         level.create();
 
-        scientist = new SpeechPopup('scientist');
+        scientist = new SpeechPopup();
 
         // #care...
         window.scientist = scientist;
 
-        setTimeout(function()
+        /*setTimeout(function()
         {
             scientist.show('tut', 0, true);
-        }, 600);
+        }, 600);*/
     }
 
     function update()

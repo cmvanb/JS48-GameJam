@@ -1,10 +1,10 @@
 'use strict';
 
 define([
-    'gameobjects/GameObject',
     'components/PlayerController',
-    'Constants'
-], function (GameObject, PlayerController, Constants)
+    'Constants',
+    'components/CloningMachine'
+], function (PlayerController, Constants, CloningMachine)
 {
     // Create a game object.
     var Level = function(fileName)
@@ -20,6 +20,8 @@ define([
         this.backgroundLayer = null;
 
         this.wallsLayer = null;
+
+        this.cloningMachines = [];
     };
 
     Level.GRAVITY = 2000;
@@ -49,6 +51,9 @@ define([
 
         // Wall objects.
         this.createWalls();
+
+        // Special objects.
+        this.createSpecialObjects();
 
         // Physics objects.
         this.createPhysicsObjects();
@@ -81,6 +86,20 @@ define([
         }
     };
 
+    Level.prototype.createSpecialObjects = function()
+    {
+        var cloningMachinesGroup = game.add.group();
+
+        this.map.createFromObjects('Objects', 51, 'cloning-machine', 0, true, false, cloningMachinesGroup);
+
+        for (var i = 0; i < cloningMachinesGroup.children.length; ++i)
+        {
+            var cloningMachine = new CloningMachine(cloningMachinesGroup.children[i]);
+
+            this.cloningMachines.push(cloningMachine);
+        }
+    };
+
     Level.prototype.createPhysicsObjects = function()
     {
         var physicsObjects = game.add.group();
@@ -100,7 +119,7 @@ define([
 
     Level.prototype.createPlayer = function()
     {
-        this.player = new GameObject('player', [PlayerController]);
+        window.player = this.player = new PlayerController();
 
         //  Here is the contact material. It's a combination of 2 materials, so whenever shapes with
         //  those 2 materials collide it uses the following settings.
@@ -134,6 +153,11 @@ define([
     Level.prototype.update = function()
     {
         this.player.update();
+
+        for (var i = 0; i < this.cloningMachines.length; ++i)
+        {
+            this.cloningMachines[i].update();
+        }
     };
 
     return Level;

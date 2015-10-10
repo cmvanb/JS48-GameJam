@@ -4,7 +4,7 @@ define([], function ()
 {
     var Constants = {};
 
-    Constants.DEBUG = false;
+    Constants.DEBUG = true;
 
     return Constants;
 });

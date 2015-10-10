@@ -1,19 +1,18 @@
 define([
-    'components/Component',
     'Constants'
-], function(Component, Constants)
+], function(Constants)
 {
-    function PlayerController(parent)
+    function PlayerController()
     {
-        Component.call(this, parent);
+        this.sprite = game.add.sprite(0, 0, 'player');
 
         // Camera.
-        game.camera.follow(this.parent);
+        game.camera.follow(this.sprite);
 
         // Physics stuff.
-        game.physics.p2.enable(this.parent, Constants.DEBUG);
+        game.physics.p2.enable(this.sprite, Constants.DEBUG);
 
-        this.body = this.parent.body;
+        this.body = this.sprite.body;
 
         this.material = game.physics.p2.createMaterial('playerMaterial', this.body);
 
@@ -33,9 +32,11 @@ define([
         this.jumpTimer = 0;
 
         this.jumped = false;
-    }
 
-    PlayerController.prototype = Object.create(Component.prototype);
+        var killKey = game.input.keyboard.addKey(Phaser.Keyboard.K);
+
+        killKey.onDown.add(this.kill, this);
+    }
 
     PlayerController.JUMP_HEIGHT = 880;
 
@@ -45,8 +46,6 @@ define([
 
     PlayerController.prototype.update = function()
     {
-        Component.prototype.update.call(this);
-
         if (scientist.controlsDisabled)
         {
             return;
@@ -115,6 +114,11 @@ define([
         }
 
         return result;
+    };
+
+    PlayerController.prototype.kill = function()
+    {
+        console.log('you died');
     };
 
     return PlayerController;
