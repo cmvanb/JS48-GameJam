@@ -13,7 +13,7 @@ define([], function ()
 
     Loader.prototype.loadAll = function()
     {
-        game.load.tilemap('map', 'assets/levels/collision_test.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('map', 'assets/levels/level1.json', null, Phaser.Tilemap.TILED_JSON);
 
         game.load.image('gradiented', 'assets/tiles/gradiented-sheet.png');
     };
