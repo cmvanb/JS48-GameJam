@@ -17,6 +17,11 @@ define([
     {
         Component.prototype.update.call(this);
 
+        if (scientist.controlsDisabled)
+        {
+            return;
+        }
+
         if (this.cursors.up.isDown)
         {
             this.parent.y -= 4;

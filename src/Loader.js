@@ -15,6 +15,8 @@ define([], function ()
         game.load.image('gradiented', 'assets/tiles/gradiented-sheet.png');
 
         game.load.image('player', 'assets/characters/player.png');
+
+        game.load.image('scientist', 'assets/characters/MadScientist.png');
     };
 
     return Loader;
