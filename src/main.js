@@ -1,6 +1,8 @@
 'use strict';
 
-define([], function ()
+define([
+    'Loader'
+], function (Loader)
 {
     // Greet the world.
     console.log('Hello world.');
@@ -14,14 +16,34 @@ define([], function ()
             render: render
         });
 
+    // Assign global, because game jam.
+    window.game = game;
+
     function preload()
     {
         console.log('preload');
+
+        var loader = new Loader();
+
+        loader.loadAll();
     }
 
     function create()
     {
         console.log('create');
+
+        game.stage.backgroundColor = '#000000';
+
+        var map = game.add.tilemap('test1');
+
+        for (var i = 0; i < Loader.TILE_FILE_NAMES.length; ++i)
+        {
+            map.addTilesetImage(Loader.TILE_FILE_NAMES[i]);
+        }
+
+        var layer = map.createLayer('Walls');
+
+        layer.resizeWorld();
     }
 
     function update()
