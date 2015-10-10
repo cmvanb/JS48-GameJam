@@ -14,10 +14,10 @@ define([], function ()
 
         game.load.image('gradiented', 'assets/tiles/gradiented-sheet.png');
         game.load.image('objects', 'assets/tiles/objects-sheet.png');
-
         game.load.image('box', 'assets/objects/box.png');
-
         game.load.image('player', 'assets/characters/player-small.png');
+        //game.load.image('scientist', 'assets/characters/MadScientist.png');
+        game.load.image('scientist', 'assets/characters/dr-monocle-dialog.png');
     };
 
     return Loader;

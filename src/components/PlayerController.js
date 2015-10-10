@@ -47,6 +47,11 @@ define([
     {
         Component.prototype.update.call(this);
 
+        if (scientist.controlsDisabled)
+        {
+            return;
+        }
+
         if (this.cursors.left.isDown)
         {
             this.body.moveLeft(PlayerController.WALK_SPEED);

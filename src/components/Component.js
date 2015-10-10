@@ -7,6 +7,7 @@ define([], function() {
 
     Component.prototype.update = function()
     {
+
     };
 
     return Component;

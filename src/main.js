@@ -2,8 +2,10 @@
 
 define([
     'Loader',
-    'Level'
-], function (Loader, Level)
+    'Level',
+    'gameobjects/GameObject',
+    'gameobjects/SpeechPopup'
+], function (Loader, Level, GameObject, SpeechPopup)
 {
     // Greet the world.
     console.log('Hello world.');
@@ -21,6 +23,7 @@ define([
     window.game = game;
 
     var level;
+    var scientist;
 
     function preload()
     {
@@ -42,11 +45,22 @@ define([
         level = new Level('level1');
 
         level.create();
+
+        scientist = new SpeechPopup('scientist');
+
+        // #care...
+        window.scientist = scientist;
+
+        setTimeout(function()
+        {
+            scientist.show('tut', 0, true);
+        }, 600);
     }
 
     function update()
     {
         level.update();
+        scientist.update();
     }
 
     function render()
