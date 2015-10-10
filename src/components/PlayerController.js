@@ -1,13 +1,14 @@
 define([
-    'Constants'
-], function(Constants)
+    'Constants',
+    'components/CloningMachine'
+], function(Constants, CloningMachine)
 {
     function PlayerController()
     {
         this.sprite = game.add.sprite(0, 0, 'player');
 
         // Camera.
-        game.camera.follow(this.sprite);
+        game.camera.follow(this.sprite, Phaser.Camera.FOLLOW_PLATFORMER);
 
         // Physics stuff.
         game.physics.p2.enable(this.sprite, Constants.DEBUG);
@@ -23,8 +24,8 @@ define([
         this.body.damping = 0.5;
 
         // Start position.
-        this.body.x = 200;
-        this.body.y = 200;
+        this.body.x = CloningMachine.respawnPosition.x;
+        this.body.y = CloningMachine.respawnPosition.y;
 
         // Vars.
         this.cursors = game.input.keyboard.createCursorKeys();
@@ -33,6 +34,9 @@ define([
 
         this.jumped = false;
 
+        this.alive = true;
+
+        // Input.
         var killKey = game.input.keyboard.addKey(Phaser.Keyboard.K);
 
         killKey.onDown.add(this.kill, this);
@@ -44,7 +48,26 @@ define([
 
     PlayerController.WALK_SPEED = 300;
 
+    PlayerController.RESPAWN_TIME = 1000;
+
     PlayerController.prototype.update = function()
+    {
+        if (this.alive)
+        {
+            this.handleInput();
+        }
+        else
+        {
+            // Freeze the physics body in place after death to avoid weird ghost things from happening.
+            this.body.x = -999;
+            this.body.y = -999;
+
+            this.body.velocity.x = 0;
+            this.body.velocity.y = 0;
+        }
+    };
+
+    PlayerController.prototype.handleInput = function()
     {
         if (scientist.controlsDisabled)
         {
@@ -87,6 +110,11 @@ define([
 
     PlayerController.prototype.canJump = function()
     {
+        if (!this.alive)
+        {
+            return false;
+        }
+
         var yAxis = p2.vec2.fromValues(0, 1);
 
         var result = false;
@@ -119,6 +147,40 @@ define([
     PlayerController.prototype.kill = function()
     {
         console.log('you died');
+
+        this.alive = false;
+
+        this.sprite.visible = false;
+
+        this.body.x = -999;
+        this.body.y = -999;
+
+        this.body.velocity.x = 0;
+        this.body.velocity.y = 0;
+
+        game.camera.unfollow();
+
+        var self = this;
+
+        setTimeout(function()
+        {
+            self.reset();
+        }, PlayerController.RESPAWN_TIME);
+    };
+
+    PlayerController.prototype.reset = function()
+    {
+        this.alive = true;
+
+        this.sprite.visible = true;
+
+        game.camera.follow(this.sprite, Phaser.Camera.FOLLOW_PLATFORMER);
+
+        this.body.x = CloningMachine.respawnPosition.x;
+        this.body.y = CloningMachine.respawnPosition.y;
+
+        this.body.velocity.x = 0;
+        this.body.velocity.y = 0;
     };
 
     return PlayerController;

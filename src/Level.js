@@ -24,8 +24,6 @@ define([
         this.cloningMachines = [];
     };
 
-    Level.GRAVITY = 2000;
-
     Level.prototype.create = function()
     {
         // Create tilemap and add images.
@@ -46,7 +44,7 @@ define([
         // Physics setup.
         //game.physics.p2.friction = 0;
         game.physics.p2.restitution = 0;
-        game.physics.p2.gravity.y = Level.GRAVITY;
+        game.physics.p2.gravity.y = Constants.GRAVITY;
         game.physics.p2.world.setGlobalStiffness(1e5);
 
         // Wall objects.

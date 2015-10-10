@@ -1,27 +1,47 @@
 define([
-    'Constants'
-], function(Constants)
+    'GlobalFunctions'
+], function(GlobalFunctions)
 {
     function CloningMachine(sprite)
     {
         this.sprite = sprite;
+
+        this.graphics = game.add.graphics(0, 0);
+
+        this.activated = false;
+
+        if (sprite.name === 'Start')
+        {
+            this.setActive(true);
+        }
     }
 
-    CloningMachine.ACTIVE_DISTANCE = 10;
+    CloningMachine.ACTIVE_DISTANCE = 80;
+
+    CloningMachine.respawnPosition = new Phaser.Point();
 
     CloningMachine.prototype.update = function()
     {
-        var distX = Math.abs(window.player.sprite.x - (this.sprite.x + (this.sprite.width / 2)));
-        var distY = Math.abs(window.player.sprite.y - (this.sprite.y + (this.sprite.height)));
+        var myPos = GlobalFunctions.getSpriteAnchorPosition(this.sprite);
+        var playerPos = GlobalFunctions.getSpriteAnchorPosition(player.sprite);
 
-        if (distX < CloningMachine.ACTIVE_DISTANCE
-            && distY < CloningMachine.ACTIVE_DISTANCE)
+        var distance = Phaser.Point.distance(myPos, playerPos);
+
+        if (distance < CloningMachine.ACTIVE_DISTANCE)
         {
-            console.log("WHALE SOUDN " + game.time.now);
+            this.setActive();
         }
-        else
+    };
+
+    CloningMachine.prototype.setActive = function()
+    {
+        if (!this.activated)
         {
-            console.log(distX + ' ' + distY);
+            CloningMachine.respawnPosition = GlobalFunctions.getSpriteAnchorPosition(this.sprite);
+
+            this.sprite.loadTexture('cloning-machine-active');
+
+            this.activated = true;
         }
     };
 
