@@ -159,11 +159,12 @@ define([
         //this.text.x = this.sprite.x - this.sprite.width / 2;
         //this.text.y = this.sprite.y - this.sprite.width / 2;
 
-        this.text.x = 65;
-        this.text.y = 450;
+        this.text.x = this.sprite.x + 65;
+        this.text.y = this.sprite.y + 450;
 
         /*this.continueText.x = this.text.x;
         this.continueText.y = this.text.y + 50;*/
+
     };
 
     return SpeechPopup;
