@@ -2,8 +2,9 @@
 
 define([
     'gameobjects/GameObject',
-    'components/PlayerController'
-], function (GameObject, PlayerController)
+    'components/PlayerController',
+    'Constants'
+], function (GameObject, PlayerController, Constants)
 {
     // Create a game object.
     var Level = function(fileName)
@@ -11,6 +12,8 @@ define([
         console.log('Level ctor');
 
         this.fileName = fileName;
+
+        this.walls = null;
     };
 
     Level.GRAVITY = 2000;
@@ -39,11 +42,16 @@ define([
         //  Convert the tilemap layer into bodies. Only tiles that collide (see above) are created.
         //  This call returns an array of body objects which you can perform addition actions on if
         //  required. There is also a parameter to control optimising the map build.
-        game.physics.p2.convertTilemap(map, wallsLayer);
+        this.walls = game.physics.p2.convertTilemap(map, wallsLayer, true, true);
 
-        game.physics.p2.restitution = 0.1;
+        for (var w = 0; w < this.walls.length; ++w)
+        {
+            this.walls[w].debug = Constants.DEBUG;
+        }
+
+        //game.physics.p2.friction = 0;
+        game.physics.p2.restitution = 0;
         game.physics.p2.gravity.y = Level.GRAVITY;
-        game.physics.p2.world.defaultContactMaterial.friction = 0.3;
         game.physics.p2.world.setGlobalStiffness(1e5);
 
         // Physics objects.
@@ -55,9 +63,10 @@ define([
         {
             var physicsObject = physicsObjects.children[i];
 
-            game.physics.p2.enable(physicsObject);
+            game.physics.p2.enable(physicsObject, Constants.DEBUG);
 
             physicsObject.body.mass = 6;
+            physicsObject.body.damping = 0.5;
         }
 
         // Create player.

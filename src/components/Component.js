@@ -7,7 +7,6 @@ define([], function() {
 
     Component.prototype.update = function()
     {
-        console.log('component update');
     };
 
     return Component;

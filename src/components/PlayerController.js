@@ -1,7 +1,8 @@
 define([
-    'components/Component'
-], function(Component) {
-
+    'components/Component',
+    'Constants'
+], function(Component, Constants)
+{
     function PlayerController(parent)
     {
         Component.call(this, parent);
@@ -10,11 +11,14 @@ define([
         game.camera.follow(this.parent);
 
         // Physics stuff.
-        game.physics.p2.enable(this.parent);
+        game.physics.p2.enable(this.parent, Constants.DEBUG);
 
         this.body = this.parent.body;
 
-        this.body.setRectangleFromSprite(this.parent.sprite);
+        this.body.clearShapes();
+        //this.body.setCircle(35, 0, 10);
+        //this.body.setRectangleFromSprite(this.parent.sprite);
+        this.body.addCapsule(length, 25, 0, 0, Math.PI / 2);
 
         this.body.fixedRotation = true;
         this.body.damping = 0.5;
@@ -32,7 +36,7 @@ define([
 
     PlayerController.prototype = Object.create(Component.prototype);
 
-    PlayerController.JUMP_HEIGHT = 700;
+    PlayerController.JUMP_HEIGHT = 880;
 
     PlayerController.JUMP_DELAY_MS = 150;
 
@@ -81,14 +85,17 @@ define([
             if (c.bodyA === this.body.data
                 || c.bodyB === this.body.data)
             {
-                var d = p2.vec2.dot(c.normalA, yAxis); // Normal dot Y-axis
+                // Normal dot Y-axis.
+                var d = p2.vec2.dot(c.normalA, yAxis);
 
                 if (c.bodyA === this.body.data)
                 {
                     d *= -1;
                 }
 
-                if (d > 0.5)
+                console.log(d);
+
+                if (d > 0.9)
                 {
                     return true;
                 }
