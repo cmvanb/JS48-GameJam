@@ -14,6 +14,8 @@ define([], function ()
 
         game.load.image('gradiented', 'assets/tiles/gradiented-sheet.png');
         game.load.image('objects', 'assets/tiles/objects-sheet.png');
+
+        game.load.image('box', 'assets/objects/box.png');
     };
 
     return Loader;
