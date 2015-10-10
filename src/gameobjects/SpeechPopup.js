@@ -9,12 +9,12 @@ define([
         this.texts = {
             tut: {
                 0: ["Hellllooooo! Here's your boss speaking...",
-                    "Let me get a few things straight. I don't care about you. I don't mind your death",
-                    "Well maybe I might chuckly a bit...",
+                    "Let me get a few things straight. I don't care about you. I don't mind your death.",
+                    "Well maybe I might chuckle a bit...",
                     "Especially if there's a lot of blood, brains and other intestines involved...",
                     "But back to the point! You're here to do some tests for me! I'm not telling you what kind of physics based platformer puzzles.",
                     "Damnit!",
-                    "Oh who cares... Just die -erm go!"]
+                    "Oh who cares... Just die -erm GO!"]
             },
             death: {
                 0: 'Interesting behaviour, do you do this more often?'
