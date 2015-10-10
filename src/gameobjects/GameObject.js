@@ -2,7 +2,7 @@ define([], function() {
 
     function GameObject(name, componentsArray)
     {
-        console.log('Character ctor');
+        console.log('GameObject ctor');
 
         this.sprite = game.add.sprite(0, 0, name);
 
