@@ -16,6 +16,8 @@ define([], function ()
         game.load.image('objects', 'assets/tiles/objects-sheet.png');
 
         game.load.image('box', 'assets/objects/box.png');
+
+        game.load.image('player', 'assets/characters/player.png');
     };
 
     return Loader;

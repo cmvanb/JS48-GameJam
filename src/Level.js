@@ -1,6 +1,9 @@
 'use strict';
 
-define([], function ()
+define([
+    'gameobjects/GameObject',
+    'components/PlayerController'
+], function (GameObject, PlayerController)
 {
     // Create a game object.
     var Level = function(fileName)
@@ -50,6 +53,21 @@ define([], function ()
 
             game.physics.p2.enable(physicsObject);
         }
+
+        // Create player.
+        this.createPlayer();
+    };
+
+    Level.prototype.createPlayer = function()
+    {
+        this.player = new GameObject('player', [PlayerController]);
+        this.player.sprite.x = 144;
+        this.player.sprite.y = 184;
+    };
+
+    Level.prototype.update = function()
+    {
+        this.player.update();
     };
 
     return Level;
