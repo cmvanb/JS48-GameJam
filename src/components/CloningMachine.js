@@ -6,8 +6,6 @@ define([
     {
         this.sprite = sprite;
 
-        this.graphics = game.add.graphics(0, 0);
-
         this.activated = false;
 
         if (sprite.name === 'Start')

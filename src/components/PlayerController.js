@@ -42,11 +42,11 @@ define([
         killKey.onDown.add(this.kill, this);
     }
 
-    PlayerController.JUMP_HEIGHT = 880;
+    PlayerController.JUMP_HEIGHT = 840;
 
     PlayerController.JUMP_DELAY_MS = 150;
 
-    PlayerController.WALK_SPEED = 300;
+    PlayerController.WALK_SPEED = 350;
 
     PlayerController.RESPAWN_TIME = 1000;
 

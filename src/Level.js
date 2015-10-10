@@ -3,8 +3,9 @@
 define([
     'components/PlayerController',
     'Constants',
-    'components/CloningMachine'
-], function (PlayerController, Constants, CloningMachine)
+    'components/CloningMachine',
+    'gameobjects/Spikes'
+], function (PlayerController, Constants, CloningMachine, Spikes)
 {
     // Create a game object.
     var Level = function(fileName)
@@ -21,7 +22,7 @@ define([
 
         this.wallsLayer = null;
 
-        this.cloningMachines = [];
+        this.updatables = [];
     };
 
     Level.prototype.create = function()
@@ -86,6 +87,7 @@ define([
 
     Level.prototype.createSpecialObjects = function()
     {
+        // Cloning machines.
         var cloningMachinesGroup = game.add.group();
 
         this.map.createFromObjects('Objects', 51, 'cloning-machine', 0, true, false, cloningMachinesGroup);
@@ -94,7 +96,19 @@ define([
         {
             var cloningMachine = new CloningMachine(cloningMachinesGroup.children[i]);
 
-            this.cloningMachines.push(cloningMachine);
+            this.updatables.push(cloningMachine);
+        }
+
+        // Spikes.
+        var spikesGroup = game.add.group();
+
+        this.map.createFromObjects('Objects', 52, 'spikes', 0, true, false, spikesGroup);
+
+        for (var j = 0; j < spikesGroup.children.length; ++j)
+        {
+            var spikes = new Spikes(spikesGroup.children[j]);
+
+            this.updatables.push(spikes);
         }
     };
 
@@ -152,9 +166,9 @@ define([
     {
         this.player.update();
 
-        for (var i = 0; i < this.cloningMachines.length; ++i)
+        for (var i = 0; i < this.updatables.length; ++i)
         {
-            this.cloningMachines[i].update();
+            this.updatables[i].update();
         }
     };
 
