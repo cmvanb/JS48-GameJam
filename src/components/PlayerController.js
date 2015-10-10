@@ -17,6 +17,7 @@ define([
         this.body.setRectangleFromSprite(this.parent.sprite);
 
         this.body.fixedRotation = true;
+        this.body.damping = 0.5;
 
         this.body.x = 200;
         this.body.y = 200;
@@ -25,13 +26,15 @@ define([
         this.cursors = game.input.keyboard.createCursorKeys();
 
         this.jumpTimer = 0;
+
+        this.jumped = false;
     }
 
     PlayerController.prototype = Object.create(Component.prototype);
 
-    PlayerController.JUMP_HEIGHT = 400;
+    PlayerController.JUMP_HEIGHT = 700;
 
-    PlayerController.JUMP_DELAY_MS = 750;
+    PlayerController.JUMP_DELAY_MS = 150;
 
     PlayerController.WALK_SPEED = 300;
 
@@ -54,12 +57,15 @@ define([
 
         if (this.cursors.up.isDown
             && game.time.now > this.jumpTimer
+            && !this.jumped
             && this.canJump())
         {
             this.body.moveUp(PlayerController.JUMP_HEIGHT);
 
             this.jumpTimer = game.time.now + PlayerController.JUMP_DELAY_MS;
         }
+
+        this.jumped = this.cursors.up.isDown;
     };
 
     PlayerController.prototype.canJump = function()

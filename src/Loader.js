@@ -17,7 +17,7 @@ define([], function ()
 
         game.load.image('box', 'assets/objects/box.png');
 
-        game.load.image('player', 'assets/characters/player.png');
+        game.load.image('player', 'assets/characters/player-small.png');
     };
 
     return Loader;

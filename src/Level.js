@@ -13,6 +13,8 @@ define([
         this.fileName = fileName;
     };
 
+    Level.GRAVITY = 2000;
+
     Level.prototype.create = function()
     {
         var map = game.add.tilemap(this.fileName);
@@ -39,8 +41,10 @@ define([
         //  required. There is also a parameter to control optimising the map build.
         game.physics.p2.convertTilemap(map, wallsLayer);
 
-        game.physics.p2.restitution = 0.0;
-        game.physics.p2.gravity.y = 600;
+        game.physics.p2.restitution = 0.1;
+        game.physics.p2.gravity.y = Level.GRAVITY;
+        game.physics.p2.world.defaultContactMaterial.friction = 0.3;
+        game.physics.p2.world.setGlobalStiffness(1e5);
 
         // Physics objects.
         var physicsObjects = game.add.group();
@@ -52,6 +56,8 @@ define([
             var physicsObject = physicsObjects.children[i];
 
             game.physics.p2.enable(physicsObject);
+
+            physicsObject.body.mass = 6;
         }
 
         // Create player.
