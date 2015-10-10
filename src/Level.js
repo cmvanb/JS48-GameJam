@@ -28,8 +28,8 @@ define([], function ()
 
         //  Set the tiles for collision.
         //  Do this BEFORE generating the p2 bodies below.
-        map.setCollision(1);
-        map.setCollisionBetween(3, 14);
+        //map.setCollision(1);
+        map.setCollisionBetween(1, 14, true, wallsLayer);
 
         //  Convert the tilemap layer into bodies. Only tiles that collide (see above) are created.
         //  This call returns an array of body objects which you can perform addition actions on if
@@ -42,20 +42,13 @@ define([], function ()
         // Physics objects.
         var physicsObjects = game.add.group();
 
-        physicsObjects.enableBody = true;
-
         map.createFromObjects('Objects', 50, 'box', 0, true, false, physicsObjects);
 
         for (var i = 0; i < physicsObjects.children.length; ++i)
         {
-            console.log('physics activated');
-            console.log(physicsObjects.children[i]);
-
             var physicsObject = physicsObjects.children[i];
 
             game.physics.p2.enable(physicsObject);
-
-            physicsObject.body.velocity.x = 100;
         }
     };
 
