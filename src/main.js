@@ -1,8 +1,9 @@
 'use strict';
 
 define([
-    'Loader'
-], function (Loader)
+    'Loader',
+    'Level'
+], function (Loader, Level)
 {
     // Greet the world.
     console.log('Hello world.');
@@ -36,22 +37,9 @@ define([
 
         game.stage.backgroundColor = '#000000';
 
-        createLevel();
-    }
+        var level = new Level('level1');
 
-    function createLevel()
-    {
-        var map = game.add.tilemap('map');
-
-        map.addTilesetImage('gradiented');
-
-        var backgroundLayer = map.createLayer('Background');
-
-        backgroundLayer.resizeWorld();
-
-        var wallsLayer = map.createLayer('Walls');
-
-        wallsLayer.resizeWorld();
+        level.create();
     }
 
     function update()
