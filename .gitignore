@@ -1,0 +1,8 @@
+# ignored folders
+.idea/
+.archive/
+.coverage/
+.sass-cache/
+
+# ignored files
+*.DS_Store*
