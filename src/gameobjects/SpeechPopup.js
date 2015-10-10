@@ -1,10 +1,8 @@
-define([
-    'gameobjects/GameObject'
-], function(GameObject) {
-
-    function SpeechPopup(name)
+define([], function()
+{
+    function SpeechPopup()
     {
-        GameObject.call(this, name);
+        this.sprite = game.add.sprite(0, 0, 'scientist');
 
         this.texts = {
             tut: {
@@ -63,8 +61,6 @@ define([
         this.controlsDisabled = false;
     }
 
-    SpeechPopup.prototype = Object.create(GameObject.prototype);
-
     SpeechPopup.prototype.idle = function()
     {
         this.state = this.states.idle;
@@ -115,8 +111,6 @@ define([
 
     SpeechPopup.prototype.update = function()
     {
-        GameObject.prototype.update.call(this);
-
         this.sprite.x = game.camera.x + game.camera.width - this.sprite.width;
 
         switch (this.state)

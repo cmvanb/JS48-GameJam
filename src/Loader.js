@@ -16,8 +16,9 @@ define([], function ()
         game.load.image('objects', 'assets/tiles/objects-sheet.png');
         game.load.image('box', 'assets/objects/box.png');
         game.load.image('player', 'assets/characters/player-small.png');
-        //game.load.image('scientist', 'assets/characters/MadScientist.png');
         game.load.image('scientist', 'assets/characters/dr-monocle-dialog.png');
+        game.load.image('cloning-machine', 'assets/objects/cloning-machine.png');
+        game.load.image('cloning-machine-active', 'assets/objects/cloning-machine-active.png');
     };
 
     return Loader;
