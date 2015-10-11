@@ -132,7 +132,14 @@ define([
             {
                 var rectangle = new Phaser.Rectangle(obj.x, obj.y, obj.width, obj.height);
 
-                var trigger = new TriggerZone(rectangle, splits[1], this);
+                var delay = 0;
+
+                if (splits[2] === 'Delay')
+                {
+                    delay = parseInt(splits[3]);
+                }
+
+                var trigger = new TriggerZone(rectangle, splits[1], this, delay);
 
                 this.updatables.push(trigger);
             }
