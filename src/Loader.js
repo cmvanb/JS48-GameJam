@@ -26,6 +26,8 @@ define([], function ()
         game.load.image('weight', 'assets/objects/weight.png');
         game.load.image('exitdoor', 'assets/objects/exitdoor.png');
         game.load.image('splash', 'assets/ui/splash.png');
+        game.load.image('switchUp', 'assets/objects/switch-up.png');
+        game.load.image('switchDown', 'assets/objects/switch-down.png');
     };
 
     return Loader;
