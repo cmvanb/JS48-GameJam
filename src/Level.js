@@ -39,6 +39,8 @@ define([
         this.wallsLayer = null;
 
         this.updatables = [];
+
+        this.physicsObjects = [];
     };
 
     Level.prototype.create = function()
@@ -174,13 +176,12 @@ define([
         {
             var physicsObject = physicsObjects.children[i];
 
-            if (!physicsObject.body)
-            {
-                game.physics.p2.enable(physicsObject, Constants.DEBUG);
-            }
+            game.physics.p2.enable(physicsObject, Constants.DEBUG);
 
             physicsObject.body.mass = 6;
             physicsObject.body.damping = 0.5;
+
+            this.physicsObjects.push(physicsObject);
         }
     };
 
@@ -290,6 +291,11 @@ define([
         this.updatables.forEach(function(updatableObject)
         {
             updatableObject.destroy();
+        }, this);
+
+        this.physicsObjects.forEach(function(physicsObjects)
+        {
+            physicsObjects.destroy();
         }, this);
 
         game.levelSelect.show();
