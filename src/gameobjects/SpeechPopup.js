@@ -20,6 +20,7 @@ define([], function()
             firstDeath: {
                 0: ["Hahaha. Did that hurt? I hope it did.",
                     "Let me get a few things straight. I don't care about you. I don't mind your death.",
+                    "Every time you die, I make an exact clone of you!",
                     "I would tell you more about how little I care for your safety, but...",
                     "...we are running late. Hurry to the exit door!"
                 ]
