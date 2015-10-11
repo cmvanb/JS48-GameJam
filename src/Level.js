@@ -7,7 +7,8 @@ define([
     'gameobjects/Spikes',
     'gameobjects/Weight',
     'gameobjects/TriggerZone',
-    'gameobjects/ExitDoor'
+    'gameobjects/ExitDoor',
+    'gameobjects/PressureSwitch'
 ], function (
     Constants,
     PlayerController,
@@ -15,7 +16,8 @@ define([
     Spikes,
     Weight,
     TriggerZone,
-    ExitDoor)
+    ExitDoor,
+    PressureSwitch)
 {
     // Create a game object.
     var Level = function(fileName)
@@ -103,6 +105,13 @@ define([
         this.createUpdatableObjects(53, 'weight', Weight);
         this.createUpdatableObjects(58, 'exitdoor', ExitDoor);
 
+        this.createPressureSwitches();
+
+        this.createTriggerZones();
+    };
+
+    Level.prototype.createTriggerZones = function()
+    {
         // Trigger zones.
         var objectsArray = this.map.objects.Objects;
 
@@ -150,10 +159,35 @@ define([
         {
             var physicsObject = physicsObjects.children[i];
 
-            game.physics.p2.enable(physicsObject, Constants.DEBUG);
+            if (!physicsObject.body)
+            {
+                game.physics.p2.enable(physicsObject, Constants.DEBUG);
+            }
 
             physicsObject.body.mass = 6;
             physicsObject.body.damping = 0.5;
+        }
+    };
+
+    Level.prototype.createPressureSwitches = function()
+    {
+        var group = game.add.group();
+
+        this.map.createFromObjects('Objects', 59, 'switchUp', 0, true, false, group);
+
+        for (var i = 0; i < group.children.length; ++i)
+        {
+            var splits = group.children[i].name.split('_');
+
+            if (splits.length > 1
+                && splits[0] === 'Switch')
+            {
+                var pressureSwitch = new PressureSwitch(group.children[i], splits[1]);
+
+                pressureSwitch.name = group.children[i].name;
+
+                this.updatables.push(pressureSwitch);
+            }
         }
     };
 
