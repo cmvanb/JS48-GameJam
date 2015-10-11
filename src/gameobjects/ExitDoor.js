@@ -7,7 +7,7 @@ define([
         this.sprite = sprite;
     }
 
-    ExitDoor.ACTIVE_DISTANCE = 38;
+    ExitDoor.ACTIVE_DISTANCE = 40;
 
     ExitDoor.respawnPosition = new Phaser.Point();
 
@@ -17,6 +17,7 @@ define([
         {
             console.log('exit door reached!');
 
+            game.levelSelect.unlockNextLevel();
             game.levelSelect.currentLevel.destroy();
         }
     };

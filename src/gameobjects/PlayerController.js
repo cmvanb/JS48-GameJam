@@ -185,6 +185,7 @@ define([
 
     PlayerController.prototype.destroy = function()
     {
+        game.camera.unfollow(this.sprite);
         this.sprite.destroy();
     };
 
