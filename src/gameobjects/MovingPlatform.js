@@ -86,7 +86,7 @@ define([
 
     MovingPlatform.prototype.update = function()
     {
-        if (!this.moveRect)
+        if (!this.moveRect || !this.platforms[0].body)
         {
             return;
         }
