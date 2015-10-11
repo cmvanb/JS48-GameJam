@@ -81,7 +81,7 @@
                 {
                  "gid":58,
                  "height":0,
-                 "name":"",
+                 "name":"Exit",
                  "properties":
                     {
 
@@ -89,7 +89,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":435,
+                 "x":1687,
                  "y":630
                 }],
          "opacity":1,

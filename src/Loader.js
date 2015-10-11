@@ -11,7 +11,10 @@ define([], function ()
     Loader.prototype.loadAll = function()
     {
         game.load.tilemap('level1', 'assets/levels/level1.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('level2', 'assets/levels/level2.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('level3', 'assets/levels/level3.json', null, Phaser.Tilemap.TILED_JSON);
 
+        game.load.image('buttonBig', 'assets/ui/button_big.png');
         game.load.image('gradiented', 'assets/tiles/gradiented-sheet.png');
         game.load.image('objects', 'assets/tiles/objects-sheet.png');
         game.load.image('box', 'assets/objects/box.png');
@@ -21,6 +24,7 @@ define([], function ()
         game.load.image('cloning-machine-active', 'assets/objects/cloning-machine-active.png');
         game.load.image('spikes', 'assets/objects/spikes.png');
         game.load.image('weight', 'assets/objects/weight.png');
+        game.load.image('exitdoor', 'assets/objects/exitdoor.png');
     };
 
     return Loader;

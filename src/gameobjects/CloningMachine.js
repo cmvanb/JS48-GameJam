@@ -38,6 +38,11 @@ define([
         }
     };
 
+    CloningMachine.prototype.destroy = function()
+    {
+        this.sprite.destroy();
+    };
+
     return CloningMachine;
 
 });

@@ -6,8 +6,16 @@ define([
     'gameobjects/CloningMachine',
     'gameobjects/Spikes',
     'gameobjects/Weight',
-    'gameobjects/TriggerZone'
-], function (Constants, PlayerController, CloningMachine, Spikes, Weight, TriggerZone)
+    'gameobjects/TriggerZone',
+    'gameobjects/ExitDoor'
+], function (
+    Constants,
+    PlayerController,
+    CloningMachine,
+    Spikes,
+    Weight,
+    TriggerZone,
+    ExitDoor)
 {
     // Create a game object.
     var Level = function(fileName)
@@ -37,15 +45,12 @@ define([
 
         // Create tile layers.
         this.backgroundLayer = this.map.createLayer('Background');
-
         this.backgroundLayer.resizeWorld();
 
         this.wallsLayer = this.map.createLayer('Walls');
-
         this.wallsLayer.resizeWorld();
 
         this.fluffLayer = this.map.createLayer('Background Fluff');
-
         this.fluffLayer.resizeWorld();
 
         // Physics setup.
@@ -96,6 +101,7 @@ define([
         this.createUpdatableObjects(51, 'cloning-machine', CloningMachine);
         this.createUpdatableObjects(52, 'spikes', Spikes);
         this.createUpdatableObjects(53, 'weight', Weight);
+        this.createUpdatableObjects(58, 'exitdoor', ExitDoor);
 
         // Trigger zones.
         var objectsArray = this.map.objects.Objects;
@@ -190,6 +196,22 @@ define([
                 this.updatables[i].trigger();
             }
         }
+    };
+
+    Level.prototype.destroy = function()
+    {
+        this.backgroundLayer.destroy();
+        this.wallsLayer.destroy();
+        this.fluffLayer.destroy();
+        this.map.destroy();
+        this.player.destroy();
+
+        this.updatables.forEach(function(updatableObject)
+        {
+            updatableObject.destroy();
+        }, this);
+
+        game.levelSelect.show();
     };
 
     return Level;

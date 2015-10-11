@@ -1,10 +1,10 @@
 'use strict';
 
-define([
+require([
     'Loader',
-    'Level',
-    'gameobjects/SpeechPopup'
-], function (Loader, Level, SpeechPopup)
+    'gameobjects/SpeechPopup',
+    'LevelSelect'
+], function (Loader, SpeechPopup, LevelSelect)
 {
     // Greet the world.
     console.log('Hello world.');
@@ -21,7 +21,7 @@ define([
     // Assign global, because game jam.
     window.game = game;
 
-    var level;
+    var levelSelect;
     var scientist;
 
     function preload()
@@ -41,24 +41,24 @@ define([
 
         game.stage.backgroundColor = '#000000';
 
-        level = new Level('level1');
+        levelSelect = new LevelSelect();
+        levelSelect.show();
 
-        level.create();
+        game.levelSelect = levelSelect; // #care...
 
         scientist = new SpeechPopup();
 
-        // #care...
-        window.scientist = scientist;
+        game.scientist = scientist; // Math.pow(#care, 2);
 
         setTimeout(function()
         {
-            //scientist.show('tut', 0, true);
+            //game.scientist.show('tut', 0, true);
         }, 600);
     }
 
     function update()
     {
-        level.update();
+        levelSelect.update();
         scientist.update();
     }
 

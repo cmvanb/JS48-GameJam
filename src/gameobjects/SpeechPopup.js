@@ -2,6 +2,7 @@ define([], function()
 {
     function SpeechPopup()
     {
+
         this.sprite = game.add.sprite(0, 0, 'scientist');
 
         this.texts = {

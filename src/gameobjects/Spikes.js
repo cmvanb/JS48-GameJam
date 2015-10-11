@@ -17,6 +17,11 @@ define([
         }
     };
 
+    Spikes.prototype.destroy = function()
+    {
+        this.sprite.destroy();
+    };
+
     return Spikes;
 
 });

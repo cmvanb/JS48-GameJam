@@ -19,5 +19,12 @@ define([
         }
     };
 
+    TriggerZone.prototype.destroy = function()
+    {
+        //this.rectangle = null;
+        //this.triggerName = null;
+        //this.level = null;
+    };
+
     return TriggerZone;
 });
