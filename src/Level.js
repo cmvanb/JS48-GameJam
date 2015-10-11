@@ -70,6 +70,9 @@ define([
 
         // Create player.
         this.createPlayer();
+
+        // Start intro text.
+        this.startIntroText();
     };
 
     Level.prototype.createWalls = function()
@@ -174,6 +177,22 @@ define([
         playerWallContact.frictionStiffness = 1e10;
         playerWallContact.frictionRelaxation = 1e10;
         playerWallContact.surfaceVelocity = 0;
+    };
+
+    Level.prototype.startIntroText = function()
+    {
+        var currentLevel = game.levelSelect.levelId;
+
+        console.log(currentLevel);
+        console.log(game.scientist.texts.levelIntros);
+
+        if (game.scientist.texts.levelIntros[currentLevel])
+        {
+            setTimeout(function()
+            {
+                game.scientist.show('levelIntros', currentLevel, true);
+            }, 600);
+        }
     };
 
     Level.prototype.update = function()
