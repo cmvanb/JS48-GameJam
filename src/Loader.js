@@ -28,6 +28,8 @@ define([], function ()
         game.load.image('splash', 'assets/ui/splash.png');
         game.load.image('switchUp', 'assets/objects/switch-up.png');
         game.load.image('switchDown', 'assets/objects/switch-down.png');
+        game.load.image('drop-tube', 'assets/objects/drop-tube.png');
+        game.load.image('drop-tube-open', 'assets/objects/drop-tube-open.png');
     };
 
     return Loader;

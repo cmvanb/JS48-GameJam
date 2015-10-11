@@ -8,7 +8,8 @@ define([
     'gameobjects/Weight',
     'gameobjects/TriggerZone',
     'gameobjects/ExitDoor',
-    'gameobjects/PressureSwitch'
+    'gameobjects/PressureSwitch',
+    'gameobjects/DropTube'
 ], function (
     Constants,
     PlayerController,
@@ -17,7 +18,8 @@ define([
     Weight,
     TriggerZone,
     ExitDoor,
-    PressureSwitch)
+    PressureSwitch,
+    DropTube)
 {
     // Create a game object.
     var Level = function(fileName)
@@ -107,6 +109,7 @@ define([
         this.createUpdatableObjects(52, 'spikes', Spikes);
         this.createUpdatableObjects(53, 'weight', Weight);
         this.createUpdatableObjects(58, 'exitdoor', ExitDoor);
+        this.createUpdatableObjects(60, 'drop-tube', DropTube);
 
         this.createPressureSwitches();
 
