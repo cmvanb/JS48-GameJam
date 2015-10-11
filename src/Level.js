@@ -39,6 +39,8 @@ define([
         this.wallsLayer = null;
 
         this.updatables = [];
+
+        this.performedTriggers = {};
     };
 
     Level.prototype.create = function()
@@ -264,6 +266,24 @@ define([
 
     Level.prototype.performTrigger = function(triggerName)
     {
+        if (this.performedTriggers[triggerName])
+        {
+            return;
+        }
+
+        this.performedTriggers[triggerName] = true;
+
+        if (triggerName.slice(0, 7) === 'Explain')
+        {
+            var numStr = triggerName.slice(7);
+
+            var num = parseInt(numStr);
+
+            console.log('trigger explanation ' + num + ' [' + numStr + ']');
+
+            game.scientist.show('explanation', num, true);
+        }
+
         for (var i = 0; i < this.updatables.length; ++i)
         {
             if (this.updatables[i].name === triggerName

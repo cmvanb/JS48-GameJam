@@ -87,6 +87,11 @@ define([
     {
         if (game.scientist.controlsDisabled)
         {
+            if (this.freezeX)
+            {
+                this.body.x = this.freezeX;
+            }
+
             return;
         }
 

@@ -500,6 +500,21 @@
                  "width":70,
                  "x":2310,
                  "y":1120
+                }, 
+                {
+                 "height":210,
+                 "id":48,
+                 "name":"Trigger_Explain0",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":210,
+                 "x":1050,
+                 "y":910
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -508,7 +523,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":48,
+ "nextobjectid":49,
  "orientation":"orthogonal",
  "properties":
     {

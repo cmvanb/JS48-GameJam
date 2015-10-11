@@ -15,6 +15,10 @@ define([], function()
                     "Oh. Yes. Yes, I remember you now. Clone #7746.",
                     "Thanks for showing up to work today. Good clone! I will feed you later.",
                     "Today we are running very special tests. Please proceed to the exit door."
+                ],
+                4: ["Hello again!",
+                    "This is my most devilish contraption so far. Good luck...",
+                    "Just kidding. You don't need luck."
                 ]
             },
             firstDeath: {
@@ -23,6 +27,14 @@ define([], function()
                     "Every time you die, I make an exact clone of you!",
                     "I would tell you more about how little I care for your safety, but...",
                     "...we are running late. Hurry to the exit door!"
+                ]
+            },
+            explanation: {
+                0: ["This is a button.",
+                    "Please press it and proceed in a straight line. Don't dodge anything heavy."
+                ],
+                1: ["Some buttons activate cloning machines.",
+                    "Cloning is expensive you know... try not to die so much!"
                 ]
             },
             death: {
@@ -82,6 +94,12 @@ define([], function()
         this.speechIndex = 0;
 
         this.controlsDisabled = disableControls;
+
+        if (this.controlsDisabled)
+        {
+            player.body.velocity.x = 0;
+            player.freezeX = player.body.x;
+        }
 
         this.finishedSpeakingCallback = finishedSpeakingCallback;
         this.finishedSpeakingContext = finishedSpeakingContext;
