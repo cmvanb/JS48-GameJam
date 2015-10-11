@@ -256,6 +256,11 @@ define([
         this.map.destroy();
         this.player.destroy();
 
+        this.walls.forEach(function(wall)
+        {
+            wall.destroy();
+        }, this);
+
         this.updatables.forEach(function(updatableObject)
         {
             updatableObject.destroy();
