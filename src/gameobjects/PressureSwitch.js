@@ -61,19 +61,6 @@ define([
 
         game.physics.p2.enable(this.sprite, Constants.DEBUG);
         this.sprite.body.mass = 6;
-
-        //var newSprite = game.add.sprite(this.sprite.x, this.sprite.y, 'switchDown');
-        //this.sprite.parent.add(newSprite);
-        //
-        //var diffY = (this.sprite.height - newSprite.height) / 2;
-        //newSprite.y += diffY;
-        //
-        //this.sprite.destroy();
-        //
-        //this.sprite = newSprite;
-        //
-        //game.physics.p2.enable(this.sprite, Constants.DEBUG);
-        //this.sprite.body.mass = 6;
     };
 
     return PressureSwitch;

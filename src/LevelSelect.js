@@ -12,6 +12,15 @@ define([
 
         // Used to store the current level id for later use
         this.levelId = null;
+
+        var testKey = game.input.keyboard.addKey(Phaser.Keyboard.T);
+        testKey.onDown.add(function()
+        {
+            this.hide();
+
+            this.currentLevel = new Level('temp');
+            this.currentLevel.create();
+        }, this);
     }
 
     LevelSelect.prototype.show = function()

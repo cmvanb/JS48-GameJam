@@ -8,7 +8,8 @@ define([
     'gameobjects/Weight',
     'gameobjects/TriggerZone',
     'gameobjects/ExitDoor',
-    'gameobjects/PressureSwitch'
+    'gameobjects/PressureSwitch',
+    'gameobjects/MovingPlatform'
 ], function (
     Constants,
     PlayerController,
@@ -17,7 +18,8 @@ define([
     Weight,
     TriggerZone,
     ExitDoor,
-    PressureSwitch)
+    PressureSwitch,
+    MovingPlatform)
 {
     // Create a game object.
     var Level = function(fileName)
@@ -108,8 +110,8 @@ define([
         this.createUpdatableObjects(53, 'weight', Weight);
         this.createUpdatableObjects(58, 'exitdoor', ExitDoor);
 
+        this.createMovers();
         this.createPressureSwitches();
-
         this.createTriggerZones();
     };
 
@@ -169,6 +171,20 @@ define([
 
             physicsObject.body.mass = 6;
             physicsObject.body.damping = 0.5;
+        }
+    };
+
+    Level.prototype.createMovers = function()
+    {
+        var group = game.add.group();
+
+        this.map.createFromObjects('Objects', 60, 'platformLeft', 0, true, false, group);
+
+        for (var i = 0; i < group.children.length; i++)
+        {
+            var mover = new MovingPlatform(group.children[i]);
+
+            this.updatables.push(mover);
         }
     };
 
