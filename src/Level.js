@@ -188,7 +188,7 @@ define([
     {
         var group = game.add.group();
 
-        this.map.createFromObjects('Objects', 60, 'platformLeft', 0, true, false, group);
+        this.map.createFromObjects('Objects', 61, 'platformLeft', 0, true, false, group);
 
         for (var i = 0; i < group.children.length; i++)
         {

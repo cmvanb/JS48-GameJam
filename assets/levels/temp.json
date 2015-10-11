@@ -121,7 +121,20 @@
                  "y":445
                 }, 
                 {
-                 "gid":60,
+                 "height":20,
+                 "name":"MoverArea_1",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":384,
+                 "x":1305,
+                 "y":569
+                }, 
+                {
+                 "gid":61,
                  "height":0,
                  "name":"Mover-1_1",
                  "properties":
@@ -135,7 +148,7 @@
                  "y":614
                 }, 
                 {
-                 "gid":61,
+                 "gid":62,
                  "height":0,
                  "name":"",
                  "properties":
@@ -145,11 +158,11 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1552,
+                 "x":1551,
                  "y":614
                 }, 
                 {
-                 "gid":62,
+                 "gid":63,
                  "height":0,
                  "name":"",
                  "properties":
@@ -161,19 +174,6 @@
                  "width":0,
                  "x":1621,
                  "y":614
-                }, 
-                {
-                 "height":20,
-                 "name":"MoverArea_1",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":384,
-                 "x":1305,
-                 "y":569
                 }],
          "opacity":1,
          "type":"objectgroup",
