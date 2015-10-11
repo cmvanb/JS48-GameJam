@@ -6,8 +6,16 @@ define([
     'gameobjects/CloningMachine',
     'gameobjects/Spikes',
     'gameobjects/Weight',
-    'gameobjects/TriggerZone'
-], function (Constants, PlayerController, CloningMachine, Spikes, Weight, TriggerZone)
+    'gameobjects/TriggerZone',
+    'gameobjects/ExitDoor'
+], function (
+    Constants,
+    PlayerController,
+    CloningMachine,
+    Spikes,
+    Weight,
+    TriggerZone,
+    ExitDoor)
 {
     // Create a game object.
     var Level = function(fileName)
@@ -96,6 +104,7 @@ define([
         this.createUpdatableObjects(51, 'cloning-machine', CloningMachine);
         this.createUpdatableObjects(52, 'spikes', Spikes);
         this.createUpdatableObjects(53, 'weight', Weight);
+        this.createUpdatableObjects(58, 'exitdoor', ExitDoor);
 
         // Trigger zones.
         var objectsArray = this.map.objects.Objects;

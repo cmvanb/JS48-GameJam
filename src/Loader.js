@@ -21,6 +21,7 @@ define([], function ()
         game.load.image('cloning-machine-active', 'assets/objects/cloning-machine-active.png');
         game.load.image('spikes', 'assets/objects/spikes.png');
         game.load.image('weight', 'assets/objects/weight.png');
+        game.load.image('exitdoor', 'assets/objects/exitdoor.png');
     };
 
     return Loader;
