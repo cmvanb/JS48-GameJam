@@ -49,6 +49,15 @@ require([
         scientist = new SpeechPopup();
 
         game.scientist = scientist; // Math.pow(#care, 2);
+
+        game.audio = {};
+
+        game.audio.jump = game.add.audio('jump');
+        game.audio.footstep = game.add.audio('footstep');
+        game.audio.respawn = game.add.audio('respawn');
+        game.audio.squash = game.add.audio('squash');
+        game.audio.machine = game.add.audio('machine');
+        game.audio.wilhelm = game.add.audio('wilhelm');
     }
 
     function update()

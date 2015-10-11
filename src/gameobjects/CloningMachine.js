@@ -30,6 +30,8 @@ define([
     {
         if (!this.activated)
         {
+            game.audio.machine.play();
+
             CloningMachine.respawnPosition = GlobalFunctions.getSpriteAnchorPosition(this.sprite);
 
             this.sprite.loadTexture('cloning-machine-active');

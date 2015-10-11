@@ -36,6 +36,13 @@ define([], function ()
         game.load.image('platformLeft', 'assets/objects/platform-left.png');
         game.load.image('platformMiddle', 'assets/objects/platform-middle.png');
         game.load.image('platformRight', 'assets/objects/platform-right.png');
+
+        game.load.audio('jump', 'assets/audio/jump.wav');
+        game.load.audio('footstep', 'assets/audio/footstep.wav');
+        game.load.audio('respawn', 'assets/audio/respawn.wav');
+        game.load.audio('squash', 'assets/audio/squash.wav');
+        game.load.audio('machine', 'assets/audio/machine.wav');
+        game.load.audio('wilhelm', 'assets/audio/wilhelm.wav');
     };
 
     return Loader;

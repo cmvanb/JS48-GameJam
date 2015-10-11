@@ -38,6 +38,8 @@ define([
 
         this.firstDeath = false;
 
+        this.walkSoundTimer = 0;
+
         // Input.
         var killKey = game.input.keyboard.addKey(Phaser.Keyboard.K);
 
@@ -116,11 +118,22 @@ define([
             }
         }
 
+        if (Math.abs(this.body.velocity.x) > 30
+            && this.canJump()
+            && game.time.now > this.walkSoundTimer)
+        {
+            game.audio.footstep.play();
+
+            this.walkSoundTimer = game.time.now + 250;
+        }
+
         if (this.cursors.up.isDown
             && game.time.now > this.jumpTimer
             && !this.jumped
             && this.canJump())
         {
+            game.audio.jump.play();
+
             this.body.moveUp(PlayerController.JUMP_HEIGHT);
 
             this.jumpTimer = game.time.now + PlayerController.JUMP_DELAY_MS;
@@ -167,6 +180,9 @@ define([
 
     PlayerController.prototype.kill = function()
     {
+        //game.audio.wilhelm.play();
+        game.audio.squash.play();
+
         console.log('you died');
 
         this.alive = false;
@@ -204,6 +220,8 @@ define([
 
     PlayerController.prototype.reset = function()
     {
+        game.audio.respawn.play();
+
         this.alive = true;
 
         this.sprite.visible = true;
