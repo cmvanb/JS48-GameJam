@@ -45,11 +45,11 @@ define([
             // Stupid closures...
             var button = this.createButton(levelId);
 
-            button.x = game.camera.width / 2 - button.width / 2;
-            button.y = 100 + ((button.height + 20) * l);
+            button.x = game.camera.width / 6 - button.width / 2;
+            button.y = 100 + ((button.height + 0) * l);
 
-            var style = { font: "18px Arial", fill: "#000000", wordWrap: true, wordWrapWidth: button.width, align: "center" };
-            var text = game.add.text(button.x, button.y, 'LEVEL ' + levelId, style);
+            var style = { font: "16px Arial", fill: "#ffffff", wordWrap: true, wordWrapWidth: button.width, align: "center" };
+            var text = game.add.text(button.x, button.y + 3, 'LEVEL ' + levelId, style);
             text.x += button.width / 2 - text.width / 2;
             text.y += button.height / 2 - text.height / 2;
 
@@ -57,6 +57,8 @@ define([
 
             this.levelButtons.push(button);
         }
+
+        this.sprite = game.add.sprite(0, 0, 'splash');
     };
 
     LevelSelect.prototype.hide = function()
@@ -68,6 +70,8 @@ define([
             button.text.destroy();
             button.destroy();
         }, this);
+
+        this.sprite.destroy();
     };
 
     LevelSelect.prototype.createButton = function(levelId)

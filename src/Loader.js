@@ -25,6 +25,7 @@ define([], function ()
         game.load.image('spikes', 'assets/objects/spikes.png');
         game.load.image('weight', 'assets/objects/weight.png');
         game.load.image('exitdoor', 'assets/objects/exitdoor.png');
+        game.load.image('splash', 'assets/ui/splash.png');
     };
 
     return Loader;
