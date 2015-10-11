@@ -15,6 +15,7 @@ define([], function ()
         game.load.tilemap('level1', 'assets/levels/level1.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.tilemap('level2', 'assets/levels/level2.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.tilemap('level3', 'assets/levels/level3.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('level4', 'assets/levels/level4.json', null, Phaser.Tilemap.TILED_JSON);
 
         game.load.image('buttonBig', 'assets/ui/button_big.png');
         game.load.image('gradiented', 'assets/tiles/gradiented-sheet.png');
@@ -30,6 +31,8 @@ define([], function ()
         game.load.image('splash', 'assets/ui/splash.png');
         game.load.image('switchUp', 'assets/objects/switch-up.png');
         game.load.image('switchDown', 'assets/objects/switch-down.png');
+        game.load.image('drop-tube', 'assets/objects/drop-tube.png');
+        game.load.image('drop-tube-open', 'assets/objects/drop-tube-open.png');
         game.load.image('platformLeft', 'assets/objects/platform-left.png');
         game.load.image('platformMiddle', 'assets/objects/platform-middle.png');
         game.load.image('platformRight', 'assets/objects/platform-right.png');

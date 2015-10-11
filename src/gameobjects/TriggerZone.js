@@ -2,20 +2,27 @@ define([
     'GlobalFunctions'
 ], function(GlobalFunctions)
 {
-    function TriggerZone(rectangle, triggerName, level)
+    function TriggerZone(rectangle, triggerName, level, delay)
     {
         this.rectangle = rectangle;
 
         this.triggerName = triggerName;
 
         this.level = level;
+
+        this.delay = delay;
     }
 
     TriggerZone.prototype.update = function()
     {
         if (Phaser.Rectangle.contains(this.rectangle, player.sprite.x, player.sprite.y))
         {
-            this.level.performTrigger(this.triggerName);
+            var self = this;
+
+            setTimeout(function()
+            {
+                self.level.performTrigger(self.triggerName);
+            }, this.delay);
         }
     };
 

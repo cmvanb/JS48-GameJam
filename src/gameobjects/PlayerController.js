@@ -42,6 +42,20 @@ define([
         var killKey = game.input.keyboard.addKey(Phaser.Keyboard.K);
 
         killKey.onDown.add(this.kill, this);
+
+        var gravKey = game.input.keyboard.addKey(Phaser.Keyboard.G);
+
+        gravKey.onDown.add(function()
+        {
+            if (game.physics.p2.gravity.y === 0)
+            {
+                game.physics.p2.gravity.y = Constants.GRAVITY;
+            }
+            else
+            {
+                game.physics.p2.gravity.y = 0;
+            }
+        }, this);
     }
 
     PlayerController.JUMP_HEIGHT = 840;

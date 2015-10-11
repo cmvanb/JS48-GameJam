@@ -9,7 +9,8 @@ define([
     'gameobjects/TriggerZone',
     'gameobjects/ExitDoor',
     'gameobjects/PressureSwitch',
-    'gameobjects/MovingPlatform'
+    'gameobjects/MovingPlatform',
+    'gameobjects/DropTube'
 ], function (
     Constants,
     PlayerController,
@@ -19,7 +20,8 @@ define([
     TriggerZone,
     ExitDoor,
     PressureSwitch,
-    MovingPlatform)
+    MovingPlatform,
+    DropTube)
 {
     // Create a game object.
     var Level = function(fileName)
@@ -109,6 +111,7 @@ define([
         this.createUpdatableObjects(52, 'spikes', Spikes);
         this.createUpdatableObjects(53, 'weight', Weight);
         this.createUpdatableObjects(58, 'exitdoor', ExitDoor);
+        this.createUpdatableObjects(60, 'drop-tube', DropTube);
 
         this.createMovers();
         this.createPressureSwitches();
@@ -131,7 +134,14 @@ define([
             {
                 var rectangle = new Phaser.Rectangle(obj.x, obj.y, obj.width, obj.height);
 
-                var trigger = new TriggerZone(rectangle, splits[1], this);
+                var delay = 0;
+
+                if (splits[2] === 'Delay')
+                {
+                    delay = parseInt(splits[3]);
+                }
+
+                var trigger = new TriggerZone(rectangle, splits[1], this, delay);
 
                 this.updatables.push(trigger);
             }
