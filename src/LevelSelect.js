@@ -86,10 +86,10 @@ define([
     {
         this.hide();
 
+        this.levelId = levelId;
+
         this.currentLevel = new Level('level' + levelId);
         this.currentLevel.create();
-
-        this.levelId = levelId;
     };
 
     LevelSelect.prototype.update = function()

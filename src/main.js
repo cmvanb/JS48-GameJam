@@ -49,11 +49,6 @@ require([
         scientist = new SpeechPopup();
 
         game.scientist = scientist; // Math.pow(#care, 2);
-
-        setTimeout(function()
-        {
-            //game.scientist.show('tut', 0, true);
-        }, 600);
     }
 
     function update()

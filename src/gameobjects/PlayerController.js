@@ -36,6 +36,8 @@ define([
 
         this.alive = true;
 
+        this.firstDeath = false;
+
         // Input.
         var killKey = game.input.keyboard.addKey(Phaser.Keyboard.K);
 
@@ -160,12 +162,25 @@ define([
 
         game.camera.unfollow();
 
-        var self = this;
-
-        setTimeout(function()
+        if (!this.firstDeath
+            && game.levelSelect.levelId === 1)
         {
-            self.reset();
-        }, PlayerController.RESPAWN_TIME);
+            this.firstDeath = true;
+
+            game.scientist.show('firstDeath', 0, true, function()
+            {
+                this.reset();
+            }, this);
+        }
+        else
+        {
+            var self = this;
+
+            setTimeout(function()
+            {
+                self.reset();
+            }, PlayerController.RESPAWN_TIME);
+        }
     };
 
     PlayerController.prototype.reset = function()
