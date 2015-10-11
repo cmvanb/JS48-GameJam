@@ -4,7 +4,7 @@ define([], function ()
 {
     var Constants = {};
 
-    Constants.DEBUG = true;
+    Constants.DEBUG = false;
 
     Constants.GRAVITY = 2000;
 
