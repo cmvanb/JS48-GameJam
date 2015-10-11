@@ -18,8 +18,6 @@ define([
             }
         }
 
-        this.levelButtons = [];
-
         for (var l = 0; l < this.levels.length; l++)
         {
             // Stupid closures...
@@ -40,23 +38,31 @@ define([
 
     LevelSelect.prototype.show = function()
     {
-
+        console.log('showing level select screen');
+        this.currentLevel = null;
     };
 
     LevelSelect.prototype.hide = function()
     {
-
+        console.log('hiding level select screen');
     };
 
     LevelSelect.prototype.createButton = function(levelId)
     {
         return game.add.button(0, 0, 'buttonBig', function() {
-            this.loadLevel(levelId);
+
+            // Only load levels if the current level isn't assigned
+            if (!this.currentLevel)
+            {
+                this.loadLevel(levelId);
+            }
         }, this);
     };
 
     LevelSelect.prototype.loadLevel = function(levelId)
     {
+        this.hide();
+
         this.currentLevel = new Level('level' + levelId);
         this.currentLevel.create();
     };

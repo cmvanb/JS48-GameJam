@@ -52,6 +52,11 @@ define([
         }
     };
 
+    Weight.prototype.destroy = function()
+    {
+        this.sprite.destroy();
+    };
+
     return Weight;
 
 });

@@ -42,17 +42,17 @@ require([
         game.stage.backgroundColor = '#000000';
 
         levelSelect = new LevelSelect();
-
         levelSelect.show();
+
+        game.levelSelect = levelSelect; // #care...
 
         scientist = new SpeechPopup();
 
-        // #care...
-        window.scientist = scientist;
+        game.scientist = scientist; // Math.pow(#care, 2);
 
         setTimeout(function()
         {
-            //scientist.show('tut', 0, true);
+            //game.scientist.show('tut', 0, true);
         }, 600);
     }
 

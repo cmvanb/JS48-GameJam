@@ -45,15 +45,12 @@ define([
 
         // Create tile layers.
         this.backgroundLayer = this.map.createLayer('Background');
-
         this.backgroundLayer.resizeWorld();
 
         this.wallsLayer = this.map.createLayer('Walls');
-
         this.wallsLayer.resizeWorld();
 
         this.fluffLayer = this.map.createLayer('Background Fluff');
-
         this.fluffLayer.resizeWorld();
 
         // Physics setup.
@@ -199,6 +196,22 @@ define([
                 this.updatables[i].trigger();
             }
         }
+    };
+
+    Level.prototype.destroy = function()
+    {
+        this.backgroundLayer.destroy();
+        this.wallsLayer.destroy();
+        this.fluffLayer.destroy();
+        this.map.destroy();
+        this.player.destroy();
+
+        this.updatables.forEach(function(updatableObject)
+        {
+            updatableObject.destroy();
+        }, this);
+
+        game.levelSelect.show();
     };
 
     return Level;

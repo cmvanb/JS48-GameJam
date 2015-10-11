@@ -16,7 +16,14 @@ define([
         if (GlobalFunctions.distanceToPlayer(this.sprite) < ExitDoor.ACTIVE_DISTANCE)
         {
             console.log('exit door reached!');
+
+            game.levelSelect.currentLevel.destroy();
         }
+    };
+
+    ExitDoor.prototype.destroy = function()
+    {
+        this.sprite.destroy();
     };
 
     return ExitDoor;

@@ -69,7 +69,7 @@ define([
 
     PlayerController.prototype.handleInput = function()
     {
-        if (scientist.controlsDisabled)
+        if (game.scientist.controlsDisabled)
         {
             return;
         }
@@ -181,6 +181,11 @@ define([
 
         this.body.velocity.x = 0;
         this.body.velocity.y = 0;
+    };
+
+    PlayerController.prototype.destroy = function()
+    {
+        this.sprite.destroy();
     };
 
     return PlayerController;
