@@ -16,6 +16,7 @@ define([], function ()
         game.load.tilemap('level2', 'assets/levels/level2.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.tilemap('level3', 'assets/levels/level3.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.tilemap('level4', 'assets/levels/level4.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('level5', 'assets/levels/level5.json', null, Phaser.Tilemap.TILED_JSON);
 
         game.load.image('buttonBig', 'assets/ui/button_big.png');
         game.load.image('gradiented', 'assets/tiles/gradiented-sheet.png');
