@@ -5,6 +5,7 @@ define([], function()
         this.group = game.add.group();
 
         this.sprite = game.add.sprite(0, 0, 'scientist');
+        this.sprite.visible = false;
         this.group.add(this.sprite);
 
         this.texts = {
@@ -72,6 +73,7 @@ define([], function()
     SpeechPopup.prototype.show = function(type, number, disableControls, finishedSpeakingCallback, finishedSpeakingContext)
     {
         game.world.bringToTop(this.group);
+        this.sprite.visible = true;
 
         this.state = this.states.showing;
 
@@ -132,6 +134,7 @@ define([], function()
         {
             case this.states.idle:
                 this.sprite.y = game.camera.y + game.camera.height + this.sprite.height;
+                this.sprite.visible = false;
                 break;
 
             case this.states.showing:

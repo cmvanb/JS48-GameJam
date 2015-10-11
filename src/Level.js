@@ -183,9 +183,6 @@ define([
     {
         var currentLevel = game.levelSelect.levelId;
 
-        console.log(currentLevel);
-        console.log(game.scientist.texts.levelIntros);
-
         if (game.scientist.texts.levelIntros[currentLevel])
         {
             setTimeout(function()
