@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="30" tilewidth="70" tileheight="70" nextobjectid="32">
+ <tileset firstgid="1" name="gradiented" tilewidth="70" tileheight="70">
+  <image source="../tiles/gradiented-sheet.png" width="512" height="512"/>
+  <terraintypes>
+   <terrain name="Wall" tile="0"/>
+  </terraintypes>
+  <tile id="0" terrain="0,0,0,0"/>
+  <tile id="2" terrain="0,0,,"/>
+  <tile id="3" terrain=",0,,0"/>
+  <tile id="4" terrain=",,0,0"/>
+  <tile id="5" terrain="0,,0,"/>
+  <tile id="6" terrain="0,,,"/>
+  <tile id="7" terrain=",,,0"/>
+  <tile id="8" terrain=",0,,"/>
+  <tile id="9" terrain=",,0,"/>
+  <tile id="10" terrain="0,0,0,"/>
+  <tile id="11" terrain="0,,0,0"/>
+  <tile id="12" terrain=",0,0,0"/>
+  <tile id="13" terrain="0,0,,0"/>
+ </tileset>
+ <tileset firstgid="50" name="objects" tilewidth="70" tileheight="70">
+  <image source="../tiles/objects-sheet.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Background" width="50" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt0sEJwCAQBVGxAfvvNtiAyEbJ5DMP9qg4amui6sWhSekYhSFKeIvJjvP7vrmjlI7Kearrvv6zduR1ENjB7qD9+112sDpW/nTWFTtY7GBJ6ZCkmx55twLE
+  </data>
+ </layer>
+ <layer name="Background Fluff" width="50" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzwkNACAQBDFU8fg3hggu2QCtgpnWuM1IBxTxAW+a6QA41NMBwFdWOgAAgFIbj9YBTQ==
+  </data>
+ </layer>
+ <layer name="Walls" width="50" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztldkOgCAMBEm8z///XPGVkIJrkUp2kj4KO2q2zrXF7GcAZq0RVqAHnxtVU7yHHraghwzaH2iHlPJAz805W/M+ax6Lny4xJ3DX1x45xDLRI411j82l/+F7Jjjp80yIR+2dE8u0O3kHHJFnLHog0EOHVjykXRnuSKmTSvWQBuG3qv3OUehhC3rYIuwyy51ECPknF83hArg=
+  </data>
+ </layer>
+ <objectgroup name="Objects">
+  <object id="24" gid="50" x="1120" y="1260" width="70" height="70"/>
+  <object id="25" gid="50" x="1190" y="1260" width="70" height="70"/>
+  <object id="19" name="Start" gid="51" x="280" y="630" width="70" height="70"/>
+  <object id="22" gid="51" x="1680" y="1260" width="70" height="70"/>
+  <object id="26" gid="52" x="1330" y="1680" width="70" height="70"/>
+  <object id="27" gid="52" x="1400" y="1680" width="70" height="70"/>
+  <object id="28" gid="52" x="1470" y="1680" width="70" height="70"/>
+  <object id="30" gid="53" x="630" y="420" width="70" height="70"/>
+ </objectgroup>
+</map>
